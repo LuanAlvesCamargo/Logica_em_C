@@ -1,0 +1,300 @@
+/**
+*1 – Crie um programa que leia um número do teclado até que encontre um número igual a zero. No final, mostre a soma dos números digitados.
+*/
+#include <stdio.h>
+
+int main() {
+    int i, soma = 0;
+
+    do {
+        printf("Digite um numero inteiro (0 para sair): ");
+        scanf("%i", &i);
+        soma += i;
+    } while (i != 0);
+
+    printf("A soma dos numeros digitados e: %i\n", soma);
+
+    return 0;
+}
+
+======================================================================================
+
+
+/**
+* 2 – Crie um programa que leia o preço de 5 produtos, acumule esses valores e informe o valor médio dos preços.
+*/
+#include <stdio.h>
+
+int main() {
+    int numProdutos = 5; 
+    float preco, soma = 0.0, media;
+	int i = 0;	
+    printf("Informe o preco de produtos:\n", numProdutos);
+   
+    do {
+        printf("Produto: R$ ", i + 1);
+        scanf("%f", &preco);
+
+        if (preco < 0) {
+            printf("Preco invalido. O preco deve ser maior ou igual a zero.\n");
+        } else {
+            soma += preco;
+            i++;
+        }
+    } while (i < numProdutos);
+
+    if (i > 0) {
+        media = soma / i;
+        printf("Valor medio dos precos: R$%.2f\n", media);
+    } else {
+        printf("Nenhum preco valido foi informado.\n");
+    }
+
+    return 0;
+}
+
+======================================================================================
+
+
+/**
+* 3 – Crie um programa que leia o sexo 1 para masculino ou 2 para feminino, faça os testes, conte os valores e informe o total de alunos,
+* o total de homens e o total de mulheres na sala de aula. O programa vai ler o sexo até que um número diferente de 1 e 2 seja encontrado.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int sexo, total_alunos = 0, total_homens = 0, total_mulheres = 0;
+
+    printf("Informe o sexo (1 para masculino, 2 para feminino) dos alunos. Para sair, digite outro valor.\n");
+
+    do {
+        printf("Sexo (1 - masculino, 2 - feminino): ");
+        scanf("%i", &sexo);
+
+        if (sexo == 1) {
+            total_alunos++;
+            total_homens++;
+        } else if (sexo == 2) {
+            total_alunos++;
+            total_mulheres++;
+        } else {
+            break; // Sair do loop quando um valor diferente de 1 e 2 for inserido
+        }
+    } while (1);
+
+    printf("Total de alunos: %i\n", total_alunos);
+    printf("Total de homens: %i\n", total_homens);
+    printf("Total de mulheres: %i\n", total_mulheres);
+
+    return 0;
+}
+
+======================================================================================
+
+
+/**
+* 4 – Crie um programa que leia o salário dos funcionários. Os salários devem ser acumulados e os funcionários devem ser contados.
+* O programa vai ler o salário até que um salário = 0 seja encontrado. Informar total de salário, total de funcionários e média salarial.
+*/
+
+#include <stdio.h>
+
+int main() {
+    float salario, totalSalario = 0;
+    int totalFuncionarios = 0;
+
+    do {
+        printf("Digite o salario do funcionario (ou 0 para encerrar): ");
+        scanf("%f", &salario);
+
+        if (salario > 0) {
+            totalSalario += salario;
+            totalFuncionarios++;
+        }
+    } while (salario != 0);
+
+    if (totalFuncionarios > 0) {
+        float mediaSalarial = totalSalario / totalFuncionarios;
+        printf("Total de salario: R$%.2f\n", totalSalario);
+        printf("Total de funcionarios: %d\n", totalFuncionarios);
+        printf("Media salarial: R$%.2f\n", mediaSalarial);
+    } else {
+        printf("Nenhum salario foi inserido.\n");
+    }
+
+    return 0;
+}
+
+======================================================================================
+
+
+* 5 – Elabore um programa que efetue a leitura sucessiva de valores numéricos e apresente no final o total do somatório,
+* a média e o total de valores lidos. O programa deve fazer as leituras dos valores enquanto o usuário estiver fornecendo valores positivos.
+* Ou seja, o programa deve parar, quando o usuário digitar um valor negativo.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int i;
+    int somatorio = 0;
+    int total_valores = 0;
+
+    do {
+        printf("Digite um valor (ou um valor negativo para sair): ");
+        scanf("%i", &i);
+
+        if (i >= 0) {
+            somatorio += i;
+            total_valores++;
+        }
+    } while (i >= 0);
+
+    if (total_valores > 0) {
+        float media = (float)somatorio / total_valores;
+
+        printf("Total de Valores Lidos: %i\n", total_valores);
+        printf("Somatório dos Valores: %i\n", somatorio);
+        printf("Média dos Valores: %.2f\n", media);
+    } else {
+        printf("Nenhum valor positivo foi inserido.\n");
+    }
+
+    return 0;
+}
+
+
+======================================================================================
+
+
+/**
+* Elabore um programa que efetue a leitura de valores positivos inteiros até que um valor negativo seja
+* informado. Ao final devem ser apresentados o maior e menor valores informados pelo usuário.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int i, maior, menor;
+
+    maior = menor = -1;
+
+    do {
+        printf("Digite um valor positivo (ou um valor negativo para sair): ");
+        scanf("%i", &i);
+
+        if (i >= 0) {
+            if (maior == -1 || menor == -1) {
+                maior = menor = i;
+            } else {
+        
+                if (i > maior) {
+                    maior = i;
+                }
+                if (i < menor) {
+                    menor = i;
+                }
+            }
+        }
+    } while (i >= 0);
+
+    if (maior != -1 && menor != -1) {
+        printf("Maior valor informado: %i\n", maior);
+        printf("Menor valor informado: %i\n", menor);
+    } else {
+        printf("Nenhum valor positivo foi informado.\n");
+    }
+
+    return 0;
+}
+
+======================================================================================
+
+
+/**
+* Faça um program que receba o valor do salário mímico, o número de horas trabalhadas, o número de dependentes do funcioná e a quantidade de horas extras trabalhadas. Calcule e imprima o salário a receber do funcionário segunidas as regras abaixo:
+*
+* O valor da hora trabalhada é igual a 1/5 do mínimo;
+* O salário do mês é igual ao número dehoras trabalhadas vezes o valor da hora trabalhada;
+* Para cada dependente acréscimo de R$32,00;
+* Para cada hora extra trabalhada o cálculo do valor da hora trabalhada acrescida de 50%;
+* O salário bruto é igual ao salário do mês acrescido dos valores dos dependentes e dos valores das horas extras;
+* O cálculo do valor do imposta de renda retido na fonte segue a tabela abaixo:
+*
+* IRPF	Salária Bruto
+* Isento	inferior a 900
+* 10%	De 900 a 1400
+* 20%	Superior a 1400
+* 
+* O Salária líquido é igual ao salário bruto menos IRPF;
+* A gratificação segue a próxima tabela:
+* 
+* Salário Liquido	Gratificação
+* Até 950	R$100,00
+* Superior a 950	R$50,00
+* 
+* O salário a receber do funcionário é igual liquido masi a gratificação
+*/
+
+#include <stdio.h>
+
+int main() {
+    float salarioMinimo, horasTrabalhadas, numDependentes, horasExtras;
+    float valorHoraTrabalhada, salarioMes, salarioBruto, irpf, salarioLiquido, gratificacao;
+
+    // Receber os valores de entrada
+    printf("Informe o valor do salario minimo: ");
+    scanf("%f", &salarioMinimo);
+
+    printf("Informe o numero de horas trabalhadas: ");
+    scanf("%f", &horasTrabalhadas);
+
+    printf("Informe o numero de dependentes: ");
+    scanf("%f", &numDependentes);
+
+    printf("Informe a quantidade de horas extras trabalhadas: ");
+    scanf("%f", &horasExtras);
+
+    // Calcular o valor da hora trabalhada
+    valorHoraTrabalhada = salarioMinimo / 5;
+
+    // Calcular o salário do mês
+    salarioMes = horasTrabalhadas * valorHoraTrabalhada;
+
+    // Calcular acréscimo para dependentes
+    float acrescimoDependentes = numDependentes * 32;
+
+    // Calcular valor das horas extras
+    float valorHorasExtras = (valorHoraTrabalhada * 1.5) * horasExtras;
+
+    // Calcular o salário bruto
+    salarioBruto = salarioMes + acrescimoDependentes + valorHorasExtras;
+
+    // Calcular IRPF
+    if (salarioBruto < 900) {
+        irpf = 0;
+    } else if (salarioBruto >= 900 && salarioBruto <= 1400) {
+        irpf = salarioBruto * 0.10;
+    } else {
+        irpf = salarioBruto * 0.20;
+    }
+
+    // Calcular salário líquido
+    salarioLiquido = salarioBruto - irpf;
+
+    // Calcular gratificação
+    if (salarioLiquido <= 950) {
+        gratificacao = 100;
+    } else {
+        gratificacao = 50;
+    }
+
+    // Calcular salário a receber
+    float salarioReceber = salarioLiquido + gratificacao;
+
+    // Imprimir resultado
+    printf("Salario a receber do funcionario: R$%.2f\n", salarioReceber);
+
+    return 0;
+}

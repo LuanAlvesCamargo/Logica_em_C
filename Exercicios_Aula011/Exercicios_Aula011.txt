@@ -1,0 +1,671 @@
+/*
+* 1 – Criar uma função de Câmbio que converte real em dólar ou real em euro ou real em guarani (moeda paraguaia). Procurar a cotação do dia em sites de câmbio. Fórmulas: Dolar = Real / * * * Cotação do dia Euro = Real / Cotação do Dia Guarani = Real * Cotação do Dia
+*/
+
+#include <stdio.h>
+
+float taxa_de_cambio(char moeda[]) {
+    float taxa;
+    if (strcmp(moeda, "USD") == 0) {
+        taxa = 5.63; // taxa de câmbio USD para BRL
+    } else if (strcmp(moeda, "EUR") == 0) {
+        taxa = 6.45; // taxa de câmbio EUR para BRL
+    } else if (strcmp(moeda, "PYG") == 0) {
+        taxa = 0.00077; // taxa de câmbio PYG para BRL
+    } else {
+        printf("Código de moeda inválido.\n");
+        return -1;
+    }
+    return taxa;
+}
+
+void conversao_de_moeda(float valor, char moeda[]) {
+    float taxa = taxa_de_cambio(moeda);
+    if (taxa != -1) {
+        float usd = valor / taxa;
+        float eur = valor / taxa;
+        float pyg = valor * taxa;
+        printf("%.2f BRL é igual a:\n", valor);
+        printf("%.2f USD\n", usd);
+        printf("%.2f EUR\n", eur);
+        printf("%.2f PYG\n", pyg);
+    }
+}
+
+int main() {
+    float valor = 100;
+    char moeda[] = "USD";
+    conversao_de_moeda(valor, moeda);
+    return 0;
+}
+
+
+===========================================================================================
+
+/*
+* 2 – Criar uma função para conversão entre as temperaturas Celsius e Fahrenheit.
+* Primeiro o usuário deve escolher se vai entrar com a temperatura em Célsius ou Fahrenheit,
+* depois a conversão escolhida é realizada. As fórmulas de conversão são: C= (F - 32) / 1.8 F= (C * 1.8) + 32
+*/
+
+#include <stdio.h>
+
+float taxa_de_cambio(char moeda[]) {
+    float taxa;
+    if (strcmp(moeda, "USD") == 0) {
+        taxa = 5.63; // taxa de câmbio USD para BRL
+    } else if (strcmp(moeda, "EUR") == 0) {
+        taxa = 6.45; // taxa de câmbio EUR para BRL
+    } else if (strcmp(moeda, "PYG") == 0) {
+        taxa = 0.00077; // taxa de câmbio PYG para BRL
+    } else {
+        printf("Código de moeda inválido.\n");
+        return -1;
+    }
+    return taxa;
+}
+
+void conversao_de_moeda(float valor, char moeda[]) {
+    float taxa = taxa_de_cambio(moeda);
+    if (taxa != -1) {
+        float usd = valor / taxa;
+        float eur = valor / taxa;
+        float pyg = valor * taxa;
+        printf("%.2f BRL é igual a:\n", valor);
+        printf("%.2f USD\n", usd);
+        printf("%.2f EUR\n", eur);
+        printf("%.2f PYG\n", pyg);
+    }
+}
+
+int main() {
+    float valor = 100;
+    char moeda[] = "USD";
+    conversao_de_moeda(valor, moeda);
+    return 0;
+}
+
+/*
+* A função taxa_de_cambio recebe uma string moeda como entrada e retorna a taxa de câmbio atual para a moeda especificada. A função conversao_de_moeda recebe um valor valor e uma string * * moeda como entrada e converte o valor em dólares americanos, euros e guaranis paraguaios usando as fórmulas fornecidas.
+*
+* Para obter a cotação do dia, você pode procurar em sites de câmbio como o X-Rates ou o OFX. Por favor, note que as taxas de câmbio flutuam constantemente e os valores fornecidos aqui * * * podem * não ser precisos no momento em que você os usa.
+*/
+
+===========================================================================================
+
+/*
+* 3 – Crie uma função que receba um número de 1 a 7 e retorne o dia da semana por extenso
+*/
+
+#include <stdio.h>
+
+char* dia_da_semana(int dia) {
+    switch(dia) {
+        case 1:
+            return "Domingo";
+        case 2:
+            return "Segunda-feira";
+        case 3:
+            return "Terça-feira";
+        case 4:
+            return "Quarta-feira";
+        case 5:
+            return "Quinta-feira";
+        case 6:
+            return "Sexta-feira";
+        case 7:
+            return "Sábado";
+        default:
+            return "Número inválido";
+    }
+}
+
+int main() {
+    int dia = 3;
+    printf("O dia %d é %s.\n", dia, dia_da_semana(dia));
+    return 0;
+}
+
+/*
+* A função dia_da_semana recebe um número de 1 a 7 como entrada e retorna o dia da semana correspondente em português.
+* O programa principal chama a função dia_da_semana com um número de exemplo e imprime o resultado na tela.
+*/
+
+===========================================================================================
+
+/*
+* 4 – Crie uma função que resolva o problema a seguir: Um professor, muito legal, fez 3 provas durante um semestre mas só vai levar em conta as duas
+* notas mais altas para calcular a média. Faça uma aplicação em C que peça o valor das 3 notas, mostre como seria a média com essas 3 provas, a
+* média com as 2 notas mais altas, bem como sua nota mais alta e sua nota mais baixa.
+*/
+
+#include <stdio.h>
+
+// Função que calcula a média ponderada de 3 notas
+float media_ponderada(float nota1, float nota2, float nota3) {
+  return (nota1 + nota2 + nota3) / 3;
+}
+
+// Função que calcula a média ponderada das duas notas mais altas
+float media_duas_notas_mais_altas(float nota1, float nota2, float nota3) {
+  float notas_ordenadas[3];
+  int i;
+
+  // Ordena as notas
+  for (i = 0; i < 3; i++) {
+    notas_ordenadas[i] = nota1;
+  }
+  for (i = 1; i < 3; i++) {
+    if (notas_ordenadas[i] < notas_ordenadas[i - 1]) {
+      float aux = notas_ordenadas[i];
+      notas_ordenadas[i] = notas_ordenadas[i - 1];
+      notas_ordenadas[i - 1] = aux;
+    }
+  }
+
+  // Calcula a média das duas notas mais altas
+  return (notas_ordenadas[0] + notas_ordenadas[1]) / 2;
+}
+
+// Função principal
+int main() {
+  float nota1, nota2, nota3;
+
+  // Lê as notas do usuário
+  printf("Digite a primeira nota: ");
+  scanf("%f", &nota1);
+  printf("Digite a segunda nota: ");
+  scanf("%f", &nota2);
+  printf("Digite a terceira nota: ");
+  scanf("%f", &nota3);
+
+  // Calcula as médias
+  float media_tres_notas = media_ponderada(nota1, nota2, nota3);
+  float media_duas_notas_mais_altas = media_duas_notas_mais_altas(nota1, nota2, nota3);
+
+  // Imprime os resultados
+  printf("Média com as três notas: %.2f\n", media_tres_notas);
+  printf("Média com as duas notas mais altas: %.2f\n", media_duas_notas_mais_altas);
+  printf("Nota mais alta: %.2f\n", notas_ordenadas[2]);
+  printf("Nota mais baixa: %.2f\n", notas_ordenadas[0]);
+
+  return 0;
+}
+
+
+/*
+* Este algoritmo funciona da seguinte forma:
+*
+* A função media_ponderada() calcula a média ponderada de 3 notas.
+* A função media_duas_notas_mais_altas() calcula a média ponderada das duas notas mais altas.
+* A função main() lê as notas do usuário, calcula as médias e imprime os resultados.
+* Aqui está um exemplo de saída do programa:
+* 
+* Digite a primeira nota: 8
+* Digite a segunda nota: 10
+* Digite a terceira nota: 9
+* 
+* Média com as três notas: 9.00
+* Média com as duas notas mais altas: 9.50
+* Nota mais alta: 10.00
+* Nota mais baixa: 8.00
+* Este algoritmo pode ser facilmente modificado para atender a diferentes necessidades. 
+* Por exemplo, você pode adicionar a possibilidade de o usuário especificar os pesos das notas.
+*/
+
+===========================================================================================
+
+/*
+* 5 – Faça um procedimento que receba a idade de um nadador por parâmetro e retorna, também por parâmetro, a categoria desse nadador de acordo
+* com a tabela abaixo:
+* 
+* 		indade					Caregoria
+* 
+* 		5 a 7 anos				Infantil A
+* 		8 a 10 anos				Infantil B
+* 		11 a 13 anos				Juveil A
+* 		14 a 17 anos				Juveil B
+* 		Maiores de 18 anos (incluseve)		Adulto
+*/
+
+#include <stdio.h>
+
+enum categoria {
+  infantil_a,
+  infantil_b,
+  juvenil_a,
+  juvenil_b,
+  adulto
+};
+
+void classifica_nadador(int idade, enum categoria *categoria) {
+  if (idade >= 5 && idade <= 7) {
+    *categoria = infantil_a;
+  } else if (idade >= 8 && idade <= 10) {
+    *categoria = infantil_b;
+  } else if (idade >= 11 && idade <= 13) {
+    *categoria = juvenil_a;
+  } else if (idade >= 14 && idade <= 17) {
+    *categoria = juvenil_b;
+  } else {
+    *categoria = adulto;
+  }
+}
+
+int main() {
+  int idade;
+  enum categoria categoria;
+
+  printf("Digite a idade do nadador: ");
+  scanf("%d", &idade);
+
+  classifica_nadador(idade, &categoria);
+
+  switch (categoria) {
+    case infantil_a:
+      printf("Categoria: Infantil A\n");
+      break;
+    case infantil_b:
+      printf("Categoria: Infantil B\n");
+      break;
+    case juvenil_a:
+      printf("Categoria: Juvenil A\n");
+      break;
+    case juvenil_b:
+      printf("Categoria: Juvenil B\n");
+      break;
+    case adulto:
+      printf("Categoria: Adulto\n");
+      break;
+  }
+
+  return 0;
+}
+
+
+/*
+* Esse algoritmo define um enum chamado categoria para representar as cinco categorias de nadadores. O procedimento classifica_nadador() recebe a idade do nadador como parâmetro e retorna * a categoria correspondente como parâmetro.
+* 
+* O procedimento usa uma estrutura switch para comparar a idade do nadador com os limites de cada categoria. O valor da categoria é então atribuído à variável categoria.
+* 
+* O programa principal lê a idade do nadador do usuário e chama o procedimento classifica_nadador(). Em seguida, o programa usa uma estrutura switch para imprimir a categoria do nadador.
+* 
+* Aqui está um exemplo de saída do programa:
+* 
+* Digite a idade do nadador: 10
+* Categoria: Infantil B
+* Você pode modificar esse algoritmo para atender às suas necessidades específicas. Por exemplo, você pode adicionar uma verificação para garantir que a idade do nadador seja um valor * * * válido.	
+*/
+
+===========================================================================================
+
+/*
+* 6 – Faça uma função que recebe, por parâmetro, a altura (alt) e o sexo de uma pessoa e retorna o seu peso ideal.
+* Para homens, calcular o peso ideal usando a fórmula peso ideal = 72.7 x alt - 58 e, para mulheres, peso ideal = 62.1 x alt - 44.7.
+*/
+
+
+#include <stdio.h>
+
+float calcular_peso_ideal(float alt, char sexo) {
+  float peso_ideal;
+
+  if (sexo == 'M' || sexo == 'm') {
+    peso_ideal = 72.7 * alt - 58;
+  } else {
+    peso_ideal = 62.1 * alt - 44.7;
+  }
+
+  return peso_ideal;
+}
+
+int main() {
+  float alt;
+  char sexo;
+
+  printf("Digite a altura (em metros): ");
+  scanf("%f", &alt);
+
+  printf("Digite o sexo (M ou F): ");
+  scanf(" %c", &sexo);
+
+  float peso_ideal = calcular_peso_ideal(alt, sexo);
+
+  printf("O peso ideal para essa pessoa é %.2f kg.\n", peso_ideal);
+
+  return 0;
+}
+
+/*
+* Esse algoritmo funciona da seguinte forma:
+* 
+* A função calcular_peso_ideal() recebe dois parâmetros: a altura da pessoa (alt) e o seu sexo (sexo).
+* A função verifica o sexo da pessoa. Se for masculino, a fórmula para calcular o peso ideal é 72.7 * alt - 58. Se for feminino, a fórmula é 62.1 * alt - 44.7.
+* A função retorna o peso ideal calculado.
+* O programa principal do algoritmo solicita a altura e o sexo da pessoa. 
+* Em seguida, chama a função calcular_peso_ideal() para calcular o peso ideal. Por fim, o programa imprime o peso * ideal na tela.
+* 
+* Aqui está um exemplo de como o algoritmo pode ser usado:
+* 
+* Digite a altura (em metros): 1.70
+* Digite o sexo (M ou F): M
+* O peso ideal para essa pessoa é 72.7 kg.
+* É importante notar que essas fórmulas são apenas estimativas. O peso ideal de uma pessoa também depende de outros fatores, como idade, constituição física e nível de atividade física.
+*/
+
+===========================================================================================
+
+/*
+* 7 – Fazer um programa que leia o valor de 3 produtos e informe o valor a pagar. Mostre um menu com 4 formas de pagamento – 1 para A vista – 2
+* para a prazo com 5% de juros – 3 para pagamento em 6 vezes com 8% de juros e 4 para pagamento em 12 vezes com 12% juros. Criar uma função
+* para cada forma de pagamento e informar o novo valor a pagar e os valor das parcelas quando for o caso. Este programa só encerra quando a tecla
+* ESC for pressionada.
+*/
+
+#include <stdio.h>
+
+// Função para ler o valor de um produto
+float ler_valor_produto() {
+  float valor;
+  printf("Digite o valor do produto: ");
+  scanf("%f", &valor);
+  return valor;
+}
+
+// Função para calcular o valor a pagar à vista
+float calcular_valor_a_vista(float valor_produto) {
+  return valor_produto;
+}
+
+// Função para calcular o valor a pagar a prazo com 5% de juros
+float calcular_valor_a_prazo_5_juros(float valor_produto) {
+  float juros = valor_produto * 0.05;
+  return valor_produto + juros;
+}
+
+// Função para calcular o valor a pagar em 6 vezes com 8% de juros
+float calcular_valor_em_6_vezes_8_juros(float valor_produto) {
+  float juros = valor_produto * 0.08;
+  float parcela = (valor_produto + juros) / 6;
+  return parcela;
+}
+
+// Função para calcular o valor a pagar em 12 vezes com 12% de juros
+float calcular_valor_em_12_vezes_12_juros(float valor_produto) {
+  float juros = valor_produto * 0.12;
+  float parcela = (valor_produto + juros) / 12;
+  return parcela;
+}
+
+int main() {
+  // Declaração de variáveis
+  float valor_produto1, valor_produto2, valor_produto3;
+  int opcao;
+
+  // Leitura dos valores dos produtos
+  valor_produto1 = ler_valor_produto();
+  valor_produto2 = ler_valor_produto();
+  valor_produto3 = ler_valor_produto();
+
+  // Loop de menu
+  do {
+    // Limpa a tela
+    system("clear");
+
+    // Exibe o menu
+    printf("Formas de pagamento:\n");
+    printf("1 - À vista\n");
+    printf("2 - A prazo com 5% de juros\n");
+    printf("3 - Em 6 vezes com 8% de juros\n");
+    printf("4 - Em 12 vezes com 12% de juros\n");
+    printf("Opção: ");
+    scanf("%d", &opcao);
+
+    // Processa a opção
+    switch (opcao) {
+      case 1:
+        // Calcula o valor a pagar à vista
+        float valor_total = valor_produto1 + valor_produto2 + valor_produto3;
+        printf("O valor total a pagar à vista é de R$%.2f.\n", valor_total);
+        break;
+      case 2:
+        // Calcula o valor a pagar a prazo com 5% de juros
+        float valor_total = valor_produto1 + valor_produto2 + valor_produto3;
+        float valor_a_pagar = calcular_valor_a_prazo_5_juros(valor_total);
+        printf("O valor total a pagar a prazo com 5% de juros é de R$%.2f.\n", valor_a_pagar);
+        break;
+      case 3:
+        // Calcula o valor a pagar em 6 vezes com 8% de juros
+        float valor_total = valor_produto1 + valor_produto2 + valor_produto3;
+        float valor_a_pagar = calcular_valor_em_6_vezes_8_juros(valor_total);
+        printf("O valor total a pagar em 6 vezes com 8% de juros é de R$%.2f, sendo R$%.2f por parcela.\n", valor_a_pagar, valor_a_pagar / 6);
+        break;
+      case 4:
+        // Calcula o valor a pagar em 12 vezes com 12% de juros
+        float valor_total = valor_produto1 + valor_produto2 + valor_produto3;
+        float valor_a_pagar = calcular_valor_em_12_vezes_12
+
+===========================================================================================
+
+/*
+* 8 – Fazer um programa que utilizando Vetor leia a idade de 12 pessoas. Criar as funções 1 Mostra todas as idades 2 Mostra a média das idades 3
+* Mostra somente as idades de índice ímpar.
+*/
+
+#include <stdio.h>
+
+// Declaração do vetor de idades
+int idades[12];
+
+// Função para ler a idade de uma pessoa
+void lerIdade(int indice) {
+  printf("Digite a idade da pessoa %d: ", indice + 1);
+  scanf("%d", &idades[indice]);
+}
+
+// Função para mostrar todas as idades
+void mostrarIdades() {
+  for (int i = 0; i < 12; i++) {
+    printf("Idade da pessoa %d: %d\n", i + 1, idades[i]);
+  }
+}
+
+// Função para calcular a média das idades
+float calcularMedia() {
+  int soma = 0;
+  for (int i = 0; i < 12; i++) {
+    soma += idades[i];
+  }
+  return soma / 12.0;
+}
+
+// Função para mostrar as idades de índice ímpar
+void mostrarIdadesImpares() {
+  for (int i = 0; i < 12; i++) {
+    if (i % 2 == 1) {
+      printf("Idade da pessoa %d: %d\n", i + 1, idades[i]);
+    }
+  }
+}
+
+// Programa principal
+int main() {
+  // Chama a função para ler as idades
+  for (int i = 0; i < 12; i++) {
+    lerIdade(i);
+  }
+
+  // Exibe as opções do menu
+  printf("Escolha uma opção:\n");
+  printf("1 - Mostrar todas as idades\n");
+  printf("2 - Mostrar a média das idades\n");
+  printf("3 - Mostrar as idades de índice ímpar\n");
+
+  // Lê a opção do usuário
+  int opcao;
+  scanf("%d", &opcao);
+
+  // Chama a função correspondente à opção escolhida
+  switch (opcao) {
+    case 1:
+      mostrarIdades();
+      break;
+    case 2:
+      printf("A média das idades é: %.2f\n", calcularMedia());
+      break;
+    case 3:
+      mostrarIdadesImpares();
+      break;
+    default:
+      printf("Opção inválida.\n");
+  }
+
+  return 0;
+}
+
+/*
+* O algoritmo começa declarando um vetor de 12 posições para armazenar as idades. Em seguida, ele define três funções:
+* 
+* lerIdade() - lê a idade de uma pessoa.
+* mostrarIdades() - mostra todas as idades.
+* calcularMedia() - calcula a média das idades.
+* O programa principal chama a função lerIdade() para ler as idades das 12 pessoas. Em seguida, ele exibe um menu com as três opções disponíveis.
+* O usuário escolhe uma opção e o programa chama a função correspondente.
+* 
+* A função mostrarIdades() usa um loop for para iterar sobre o vetor de idades e exibir cada idade. 
+* A função calcularMedia() usa um loop for para somar as idades e, em seguida, divide a soma pelo número de idades. 
+* A função mostrarIdadesImpares() usa um loop for para iterar sobre o vetor de idades e exibir apenas as idades de índice ímpar.
+* 
+* Exemplo de execução
+* 
+* Digite a idade da pessoa 1: 20
+* Digite a idade da pessoa 2: 25
+* Digite a idade da pessoa 3: 30
+* ...
+* 
+* Escolha uma opção:
+* 1 - Mostrar todas as idades
+* 2 - Mostrar a média das idades
+* 3 - Mostrar as idades de índice ímpar
+* 
+* 1
+* 
+* Idade da pessoa 1: 20
+* Idade da pessoa 2: 25
+* ...
+* Idade da pessoa 12: 50
+*/
+
+===========================================================================================
+
+/*
+* 9 – Fazer um programa de leia idade, peso e altura de 12 pessoas. Criar as funções 1 Mostra a idade do mais velho 2 Mostra o peso do mais leve e 3
+* Mostra a altura com o índice invertido ou seja do último para o primeiro.
+*/
+#include <stdio.h>
+
+int main() {
+
+  // Declaração de variáveis
+  int idade[12];
+  float peso[12];
+  float altura[12];
+
+  // Leitura dos dados
+  for (int i = 0; i < 12; i++) {
+    printf("Digite a idade da pessoa %d: ", i + 1);
+    scanf("%d", &idade[i]);
+
+    printf("Digite o peso da pessoa %d: ", i + 1);
+    scanf("%f", &peso[i]);
+
+    printf("Digite a altura da pessoa %d: ", i + 1);
+    scanf("%f", &altura[i]);
+  }
+
+  // Chamada das funções
+  mostra_idade_mais_velho();
+  mostra_peso_mais_leve();
+  mostra_altura_invertida();
+
+  return 0;
+}
+
+// Função para mostrar a idade do mais velho
+void mostra_idade_mais_velho() {
+
+  // Declaração de variáveis
+  int idade_mais_velho = 0;
+
+  // Encontra o maior valor de idade
+  for (int i = 0; i < 12; i++) {
+    if (idade[i] > idade_mais_velho) {
+      idade_mais_velho = idade[i];
+    }
+  }
+
+  // Mostra a idade do mais velho
+  printf("A idade do mais velho é %d\n", idade_mais_velho);
+}
+
+// Função para mostrar o peso do mais leve
+void mostra_peso_mais_leve() {
+
+  // Declaração de variáveis
+  float peso_mais_leve = 99999.99;
+
+  // Encontra o menor valor de peso
+  for (int i = 0; i < 12; i++) {
+    if (peso[i] < peso_mais_leve) {
+      peso_mais_leve = peso[i];
+    }
+  }
+
+  // Mostra o peso do mais leve
+  printf("O peso do mais leve é %.2f\n", peso_mais_leve);
+}
+
+// Função para mostrar a altura com o índice invertido
+void mostra_altura_invertida() {
+
+  // Declaração de variáveis
+  int i = 11;
+
+  // Mostra a altura com o índice invertido
+  while (i >= 0) {
+    printf("A altura da pessoa %d é %.2f\n", i, altura[i]);
+    i--;
+  }
+}
+
+/*
+* Explicação do algoritmo
+* 
+* A primeira parte do algoritmo declara as variáveis necessárias para armazenar os dados de entrada. 
+* A segunda parte do algoritmo lê os dados de entrada do usuário. A terceira parte do algoritmo chama as funções criadas.
+* 
+* A função mostra_idade_mais_velho() encontra o maior valor de idade entre as 12 pessoas.
+* A função mostra_peso_mais_leve() encontra o menor valor de peso entre as 12 pessoas. 
+* A função mostra_altura_invertida() mostra a altura das pessoas com o índice invertido, ou seja, do último para o primeiro.
+* 
+* Exemplo de saída
+* 
+* Digite a idade da pessoa 1: 20
+* Digite o peso da pessoa 1: 50.0
+* Digite a altura da pessoa 1: 1.70
+* Digite a idade da pessoa 2: 18
+* Digite o peso da pessoa 2: 45.0
+* Digite a altura da pessoa 2: 1.65
+* ...
+* 
+* A idade do mais velho é 25
+* O peso do mais leve é 40.0
+* A altura da pessoa 11 é 1.75
+* A altura da pessoa 10 é 1.74
+* ...
+* Observações
+* 
+* O algoritmo pode ser melhorado para tornar a leitura dos dados de entrada mais eficiente. Por exemplo, a função scanf() pode ser usada para ler os dados de entrada em uma única linha.
+* O algoritmo pode ser melhorado para tornar a exibição dos dados de saída mais eficiente.
+* Por exemplo, as funções printf() podem ser usadas para exibir os dados de saída em uma única linha
+*/

@@ -1,0 +1,274 @@
+/*
+* 1 – Fazer um programa que leia a idade, o peso e a altura de 10 funcionários.
+* Fazer os cálculos necessários, mostre o dados lidos, o total e a média de altura,
+* peso e idade dos funcionários.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int n = 10, i = 0;
+    int idade, totalIdade = 0;
+    float peso, totalPeso = 0.0;
+    float altura, totalAltura = 0.0;
+
+    for (i = 1; i <= n; i++) {
+        printf("Informe a idade do funcionirio %i: ", i);
+        scanf("%d", &idade);
+
+        printf("Informe o peso do funcionario %i (em kg): ", i);
+        scanf("%f", &peso);
+
+        printf("Informe a altura do funcionario %i (em metros): ", i);
+        scanf("%f", &altura);
+
+        totalIdade += idade;
+        totalPeso += peso;
+        totalAltura += altura;
+    }
+
+    float mediaIdade = (float)totalIdade / n;
+    float mediaPeso = totalPeso / n;
+    float mediaAltura = totalAltura / n;
+
+    // Exibindo os resultados
+    printf("\nDados lidos:\n");
+    printf("Total de Idade: %i\n", totalIdade);
+    printf("Total de Peso: %.2f kg\n", totalPeso);
+    printf("Total de Altura: %.2f metros\n", totalAltura);
+    printf("\nMédias:\n");
+    printf("Média de Idade: %.2f\n", mediaIdade);
+    printf("Média de Peso: %.2f kg\n", mediaPeso);
+    printf("Média de Altura: %.2f metros\n", mediaAltura);
+
+    return 0;
+}
+
+============================================================================================================================================================================================
+
+/*
+* 2 – Fazer um programa que leia o quantidade de km a ser percorrida e 
+* a quantidade de km que um carro faz com 1 litro de combustível. 
+* Fazer o cálculos qkmpercorrida[x] / consumo[x] e informe quantos litros de combustível
+* são necessários para percorrer a distância. Fazer isso com um vetor para 6 veículos;
+*/
+
+#include <stdio.h>
+
+int main() {
+    int numVeiculos = 6, i = 0;
+    float kmPercorrida, consumo;
+    float litrosNecessarios[numVeiculos];
+
+    for (i = 0; i < numVeiculos; i++) {
+        printf("Informe a quantidade de km a ser percorrida para o veiculo %i: ", i + 1);
+        scanf("%f", &kmPercorrida);
+        
+        printf("Informe a quantidade de km que o veículo %i faz com 1 litro de combustivel: ", i + 1);
+        scanf("%f", &consumo);
+
+        litrosNecessarios[i] = kmPercorrida / consumo;
+    }
+
+    printf("\nRelatorio de Consumo de Combustivel:\n");
+    for (int i = 0; i < numVeiculos; i++) {
+        printf("Veiculo %o: %.2f litros necessarios para percorrer %.2f km\n", i + 1, litrosNecessarios[i], kmPercorrida);
+    }
+
+    return 0;
+}
+
+
+============================================================================================================================================================================================
+
+/*
+* 3 – Utilizando Struct, escreva um programa que leia o id,
+* o nome e o salário de 8 funcionários e, em seguida, pergunte ao usuário por um id.
+* O programa deve verificar se o id existe no vetor e informar se foi encontrado ou não. 
+* Se foi encontrado mostrar o nome e o salário do funcionário, senão mostrar mensagem informando o erro.
+*/
+
+#include <stdio.h>
+#include <string.h>
+
+struct Funcionario {
+    int id;
+    char nome[50];
+    float salario;
+};
+
+int main() {
+    struct Funcionario funcionarios[8];
+    int idProcurado, i = 0, encontrado = 0;
+
+    for (i = 0; i < 8; i++) {
+        printf("Informe o ID do funcionario %i: ", i + 1);
+        scanf("%i", &funcionarios[i].id);
+        printf("Informe o nome do funcionario %i: ", i + 1);
+        scanf("%s", funcionarios[i].nome); // Usando %s para ler uma string (nome)
+        printf("Informe o salario do funcionario %i: ", i + 1);
+        scanf("%f", &funcionarios[i].salario);
+    }
+
+    printf("Informe o ID a ser procurado: ");
+    scanf("%i", &idProcurado);
+
+    for (i = 0; i < 8; i++) {
+        if (funcionarios[i].id == idProcurado) {
+            printf("Funcionário encontrado:\n");
+            printf("Nome: %s\n", funcionarios[i].nome);
+            printf("Salário: %.2f\n", funcionarios[i].salario);
+            encontrado = 1; 
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("ID não encontrado.\n");
+    }
+
+    return 0;
+}
+	
+============================================================================================================================================================================================
+
+/*
+* 4 – Fazer um programa que leia o preço de 10 produtos.
+* Leia a cotação do dólar e a cotação do euro uma ÚNICA vez. 
+* Mostre os preços dos produtos lidos e seus respectivos valores em dólar e euro.
+*/
+
+#include <stdio.h>
+
+int main() {
+    float precos[10];
+    float cotacaoDolar, cotacaoEuro;
+
+    printf("Digite a cotacao do dolar: ");
+    scanf("%f", &cotacaoDolar);
+
+    printf("Digite a cotacao do euro: ");
+    scanf("%f", &cotacaoEuro);
+
+    for (int i = 0; i < 10; i++) {
+        printf("Digite o preço do produto %i em reais: ", i + 1);
+        scanf("%f", &precos[i]);
+    }
+
+    printf("\nProdutos e seus preços em Reais, Dolar e Euro:\n");
+
+    for (int i = 0; i < 10; i++) {
+        float precoEmDolar = precos[i] / cotacaoDolar;
+        float precoEmEuro = precos[i] / cotacaoEuro;
+        
+        printf("Produto %i: R$ %.2f, $ %.2lf, € %.2f\n", i + 1, precos[i], precoEmDolar, precoEmEuro);
+    }
+
+    return 0;
+}
+
+============================================================================================================================================================================================
+
+/*
+* 5 – Utilizando vetor dinâmico, leia o nome e a média fina de N alunos.
+* Mostre o nome e a média final de todos os alunos e verifique se a média final for maior que 7 
+* o aluno está aprovado, senão o alunos está de exame.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char nome[50];
+    float mediaFinal;
+} Aluno;
+
+int main() {
+    int n;
+    printf("Digite o numero de alunos: ");
+    scanf("%i", &n);
+
+    if (n <= 0) {
+        printf("Numero invalido de alunos.\n");
+        return 1; // Saída com erro
+    }
+
+    Aluno *alunos = (Aluno *)malloc(n * sizeof(Aluno));
+
+    if (alunos == NULL) {
+        printf("Erro na alocacao de memoria.\n");
+        return 1; // Saída com erro
+    }
+
+    for (int i = 0; i < n; i++) {
+        printf("Digite o nome do aluno %i: ", i + 1);
+        scanf(" %[^\n]s", alunos[i].nome);
+        printf("Digite a media final do aluno %i: ", i + 1);
+        scanf("%f", &alunos[i].mediaFinal);
+    }
+
+    // Exibe os alunos e verifica se estão aprovados ou de exame
+    printf("Alunos e situação:\n");
+
+    for (int i = 0; i < n; i++) {
+        printf("Nome: %s, Media Final: %.2f, Situacao: %s\n",
+               alunos[i].nome, alunos[i].mediaFinal,
+               alunos[i].mediaFinal > 7.0 ? "Aprovado" : "De Exame");
+    }
+
+    // Libera a memória alocada
+    free(alunos);
+
+    return 0; // Saída sem erro
+}
+
+============================================================================================================================================================================================
+
+/*
+* 6 – Fazer um programa que leia a temperatura de uma cidade dos últimos 15 dias. 
+* Utilizar Climatempo para fonte de dados verídicas. Mostrar todas as temperaturas, 
+* a maior temperatura, a menor temperatura e a temperatura média.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int dias = 15, i = 0;
+    float temperaturas[dias];
+    float maiorTemperatura, menorTemperatura, temperaturaMedia = 0;
+
+    printf("Digite as temperaturas dos ultimos 15 dias:\n");
+
+    for (i = 0; i < dias; i++) {
+        printf("Dia %i: ", i + 1);
+        scanf("%f", &temperaturas[i]);
+
+        if (i == 0) {
+            maiorTemperatura = menorTemperatura = temperaturas[i];
+        } else {
+        	
+            if (temperaturas[i] > maiorTemperatura) {
+                maiorTemperatura = temperaturas[i];
+            }
+            if (temperaturas[i] < menorTemperatura) {
+                menorTemperatura = temperaturas[i];
+            }
+        }
+
+        temperaturaMedia += temperaturas[i];
+    }
+
+    temperaturaMedia /= dias;
+
+    printf("Temperaturas registradas nos ultimos 15 dias:\n");
+    for (int i = 0; i < dias; i++) {
+        printf("Dia %i: %.2f\n", i + 1, temperaturas[i]);
+    }
+
+    printf("Maior temperatura: %.2f\n", maiorTemperatura);
+    printf("Menor temperatura: %.2f\n", menorTemperatura);
+    printf("Temperatura média: %.2f\n", temperaturaMedia);
+
+    return 0;
+}

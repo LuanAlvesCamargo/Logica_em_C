@@ -1,0 +1,409 @@
+/**
+ * 1 – O restaurante a quilo Bem-Bão cobra R$12,00 por cada quilo de refeição. Faça um programa que leia o peso do prato montado
+ * pelo cliente (em quilos) e informe o valor da refeição. Mostre um menu com as opções 1 – comer no local – taxa R$ 0,0 ou 2 – levar
+ * para viagem - taxa R$ 7,00. Faça o calculo e informe o valor a pagar. Em caso de opção inválida considere taxa 0,0.
+ */
+#include <stdio.h>
+
+int main() {
+    float pesoPrato, valorRefeicao;
+    const float PRECO_POR_QUILO = 12.00;
+    const float TAXA_LEVAR_PARA_VIAGEM = 7.00;
+
+    printf("Restaurante a Quilo Bem-Bão\n");
+
+    printf("Digite o peso do prato montado (em quilos): ");
+    scanf("%f", &pesoPrato);
+
+    printf("=== Opções de Serviço ===\n");
+    printf("1 - Comer no local (taxa: R$ 0,00)\n");
+    printf("2 - Levar para viagem (taxa: R$ 7,00)\n");
+
+    int opcaoServico;
+    printf("Digite a opção de serviço (1 ou 2): ");
+    scanf("%d", &opcaoServico);
+
+    switch (opcaoServico) {
+        case 1:
+            valorRefeicao = pesoPrato * PRECO_POR_QUILO;
+            break;
+        case 2:
+            valorRefeicao = pesoPrato * PRECO_POR_QUILO + TAXA_LEVAR_PARA_VIAGEM;
+            break;
+        default:
+            printf("Opção de serviço inválida. Taxa será 0,00.\n");
+            valorRefeicao = pesoPrato * PRECO_POR_QUILO;
+    }
+
+    printf("Peso do prato: %.2f kg\n", pesoPrato);
+    printf("Valor da refeição: R$ %.2f\n", valorRefeicao);
+
+    return 0;
+}
+
+============================================================================================================================================================================================
+/**
+ * 2 – Fazer um programa que acesse a quantidade e a identificação de preço de um produto e a possibilidade de desconto, conforme
+ * a tabela abaixo. Faça os cálculos necessários (preco * quantidade) para valor total e (vtotal - (votal * taxa) para valor a pagar e
+ * informe o valor total e o valor a pagar. Em caso de ID inválido considerar preco=0.
+ * PREÇO ID DESCONTO DESCONTO
+ * R$ 100,00 A 15%
+ * R$ 150,00 B 19%
+ * R$ 200,00 C 22%
+ * R$ 250,00 D 25%
+ */
+
+#include <stdio.h>
+
+int main() {
+    char idProduto;
+    int quantidade;
+    float precoTotal, valorPagar;
+    const float DESCONTO_A = 0.15;
+    const float DESCONTO_B = 0.19;
+    const float DESCONTO_C = 0.22;
+    const float DESCONTO_D = 0.25;
+
+    printf("Digite o ID do produto (A, B, C ou D): ");
+    scanf(" %c", &idProduto);
+
+    switch (idProduto) {
+        case 'A':
+            precoTotal = 100.00;
+            break;
+        case 'B':
+            precoTotal = 150.00;
+            break;
+        case 'C':
+            precoTotal = 200.00;
+            break;
+        case 'D':
+            precoTotal = 250.00;
+            break;
+        default:
+            printf("ID inválido. Valor total será 0,00.\n");
+            precoTotal = 0.00;
+    }
+
+    printf("Digite a quantidade: ");
+    scanf("%d", &quantidade);
+
+    printf("Valor total antes do desconto: R$ %.2f\n", precoTotal * quantidade);
+
+    switch (idProduto) {
+        case 'A':
+            valorPagar = (precoTotal * quantidade) - (precoTotal * quantidade * DESCONTO_A);
+            break;
+        case 'B':
+            valorPagar = (precoTotal * quantidade) - (precoTotal * quantidade * DESCONTO_B);
+            break;
+        case 'C':
+            valorPagar = (precoTotal * quantidade) - (precoTotal * quantidade * DESCONTO_C);
+            break;
+        case 'D':
+            valorPagar = (precoTotal * quantidade) - (precoTotal * quantidade * DESCONTO_D);
+            break;
+        default:
+            valorPagar = 0.00;
+    }
+
+    printf("Valor total: R$ %.2f\n", precoTotal * quantidade);
+    printf("Valor a pagar: R$ %.2f\n", valorPagar);
+
+    return 0;
+}
+============================================================================================================================================================================================
+/**
+ * 3 – Fazer um programa que mostre o cardápio de um restaurante com 5 possibilidades de refeição, mostrando o nome do prato e
+ * preço. Leia o código do prato e a quantidade. Faça os cálculos e informe o valor total. Mostrar um menu com 3 opções de
+ * pagamento (Cartão de Crédito + 5% de taxa, Cartão de Débito + 3% de taxa ou Dinheiro – 5% de desconto). Faça o teste e
+ * calcule e informe o valor a pagar em caso de opção invalida o valor a pagar é o mesmo que o valor total.
+ */
+
+#include <stdio.h>
+
+int main() {
+    char idPrato;
+    int quantidade;
+    float precoTotal, valorPagar;
+    const float TAXA_CARTAO_CREDITO = 0.05;
+    const float TAXA_CARTAO_DEBITO = 0.03;
+    const float DESCONTO_DINHEIRO = 0.05;
+
+    printf("=== Cardápio do Restaurante ===\n");
+    printf("A - Prato 1: R$ 10.00\n");
+    printf("B - Prato 2: R$ 15.00\n");
+    printf("C - Prato 3: R$ 20.00\n");
+    printf("D - Prato 4: R$ 25.00\n");
+    printf("E - Prato 5: R$ 30.00\n");
+    
+    printf("Digite o código do prato (A, B, C, D ou E): ");
+    scanf(" %c", &dPrato);
+
+    switch (dPrato) {
+        case 'A':
+            precoTotal = 10.00;
+            break;
+        case 'B':
+            precoTotal = 15.00;
+            break;
+        case 'C':
+            precoTotal = 20.00;
+            break;
+        case 'D':
+            precoTotal = 25.00;
+            break;
+        case 'E':
+            precoTotal = 30.00;
+            break;
+        default:
+            printf("Código inválido. Valor total será 0,00.\n");
+            precoTotal = 0.00;
+    }
+
+    printf("Digite a quantidade: ");
+    scanf("%d", &quantidade);
+
+    printf("=== Opções de Pagamento ===\n");
+    printf("1 - Cartão de Crédito (+5%% de taxa)\n");
+    printf("2 - Cartão de Débito (+3%% de taxa)\n");
+    printf("3 - Dinheiro (-5%% de desconto)\n");
+
+    int opcaoPagamento;
+    printf("Digite a opção de pagamento (1, 2 ou 3): ");
+    scanf("%d", &opcaoPagamento);
+
+    switch (opcaoPagamento) {
+        case 1:
+            valorPagar = precoTotal * (1 + TAXA_CARTAO_CREDITO);
+            break;
+        case 2:
+            valorPagar = precoTotal * (1 + TAXA_CARTAO_DEBITO);
+            break;
+        case 3:
+            valorPagar = precoTotal * (1 - DESCONTO_DINHEIRO);
+            break;
+        default:
+            printf("Opção de pagamento inválida. Valor a pagar será igual ao valor total.\n");
+            valorPagar = precoTotal;
+    }
+
+    printf("Valor total: R$ %.2f\n", precoTotal);
+    printf("Valor a pagar: R$ %.2f\n", valorPagar);
+
+    return 0;
+}
+
+============================================================================================================================================================================================
+/**
+ * 4 – Fazer um programa que mostre 4 modelos de produtos eletrônicos, mostrando o nome do produto e preço. Leia o código do
+ * produto e a quantidade. Faça os cálculos e informe o valor a pagar. Mostrar um menu com 3 opções de pagamento (Parcelado em
+ * 3x SEM Juros, Parcelado em 6x SEM Juros e PARCELADO em 9X com Juros de 17%). Faça o teste, calcule e informe o valor a pagar.
+ */
+
+#include <stdio.h>
+
+int main() {
+    char idProduto;
+    int quantidade;
+    float precoTotal, valorPagar;
+    const float JUROS_PARCELADO_9X = 0.17;
+
+    printf("=== Produtos Eletrônicos ===\n");
+    printf("A - Produto 1: R$ 1000.00\n");
+    printf("B - Produto 2: R$ 1500.00\n");
+    printf("C - Produto 3: R$ 2000.00\n");
+    printf("D - Produto 4: R$ 2500.00\n");
+
+    printf("Digite o código do produto (A, B, C ou D): ");
+    scanf(" %c", &idProduto);
+
+    switch (idProduto) {
+        case 'A':
+            precoTotal = 1000.00;
+            break;
+        case 'B':
+            precoTotal = 1500.00;
+            break;
+        case 'C':
+            precoTotal = 2000.00;
+            break;
+        case 'D':
+            precoTotal = 2500.00;
+            break;
+        default:
+            printf("Código inválido. Valor total será 0,00.\n");
+            precoTotal = 0.00;
+    }
+
+    printf("Digite a quantidade: ");
+    scanf("%d", &quantidade);
+
+    printf("=== Opções de Pagamento ===\n");
+    printf("1 - Parcelado em 3x SEM Juros\n");
+    printf("2 - Parcelado em 6x SEM Juros\n");
+    printf("3 - Parcelado em 9x COM Juros (17%%)\n");
+
+    int opcaoPagamento;
+    printf("Digite a opção de pagamento (1, 2 ou 3): ");
+    scanf("%d", &opcaoPagamento);
+
+    switch (opcaoPagamento) {
+        case 1:
+            valorPagar = precoTotal;
+            break;
+        case 2:
+            valorPagar = precoTotal;
+            break;
+        case 3:
+            valorPagar = precoTotal * (1 + JUROS_PARCELADO_9X);
+            break;
+        default:
+            printf("Opção de pagamento inválida. Valor a pagar será igual ao valor total.\n");
+            valorPagar = precoTotal;
+    }
+
+    printf("Valor total: R$ %.2f\n", precoTotal);
+    printf("Valor a pagar: R$ %.2f\n", valorPagar);
+
+    return 0;
+}
+
+
+============================================================================================================================================================================================
+/**
+ * 5 – Fazer um programa com um menu de opções com a descrição e o preço de 3 produtos. Ler o código do produto e a quantidade
+ * desejada. Utilizando CASE verifique o produto e o preço escolhido. Faça o cálculo e informe o valor total. Mostrar um menu com 3
+ * opções de pagamento. Utilizando IF verifique e calcule o valor a pagar. Informe o valor a pagar.
+ */
+
+#include <stdio.h>
+
+int main() {
+    char idProduto;
+    int quantidade;
+    float precoTotal, valorPagar;
+
+    printf("=== Menu de Produtos ===\n");
+    printf("A - Produto 1: R$ 10.00\n");
+    printf("B - Produto 2: R$ 15.00\n");
+    printf("C - Produto 3: R$ 20.00\n");
+    
+    printf("Digite o código do produto (A, B ou C): ");
+    scanf(" %c", &idProduto);
+
+    switch (idProduto) {
+        case 'A':
+            precoTotal = 10.00;
+            break;
+        case 'B':
+            precoTotal = 15.00;
+            break;
+        case 'C':
+            precoTotal = 20.00;
+            break;
+        default:
+            printf("Código de produto inválido. Valor total será 0,00.\n");
+            precoTotal = 0.00;
+    }
+
+    printf("Digite a quantidade desejada: ");
+    scanf("%d", &quantidade);
+
+    precoTotal *= quantidade;
+
+    printf("=== Opções de Pagamento ===\n");
+    printf("1 - Cartão de Crédito\n");
+    printf("2 - Cartão de Débito\n");
+    printf("3 - Dinheiro\n");
+
+    int opcaoPagamento;
+    printf("Digite a opção de pagamento (1, 2 ou 3): ");
+    scanf("%d", &opcaoPagamento);
+
+    if (opcaoPagamento == 1) {
+        valorPagar = precoTotal;
+    } else if (opcaoPagamento == 2) {
+        valorPagar = precoTotal;
+    } else if (opcaoPagamento == 3) {
+        valorPagar = precoTotal;
+    } else {
+        printf("Opção de pagamento inválida. Valor a pagar será igual ao valor total.\n");
+        valorPagar = precoTotal;
+    }
+
+    printf("Valor total: R$ %.2f\n", precoTotal);
+    printf("Valor a pagar: R$ %.2f\n", valorPagar);
+
+    return 0;
+}
+
+============================================================================================================================================================================================
+/**
+ * 6 – Fazer um programa que leia o peso de um produto. Se o peso for menor que 100 KG, calcular peso * R$ 35,90, mas
+ * entre(inclusive) 100KG e 200KG, calcular peso * R$ 32,99, entretanto se o peso for acima de 200KG calcular peso * R$29,99.
+ * Informe o valor total da compra. Leia o código do usuário se for A calcular desconto de 9%, se for B calcular desconto de 11%, se
+ * for C calcular desconto de R$ 100,00, senão for nenhum código válido calcular um acréscimo de 5% mais R$ 59,99. Mostrar o valor
+ * a pagar.
+ */
+
+#include <stdio.h>
+
+int main() {
+    char idProduto;
+    int quantidade;
+    float precoTotal, valorPagar;
+
+    printf("=== Menu de Produtos ===\n");
+    printf("A - Produto 1: R$ 100.00\n");
+    printf("B - Produto 2: R$ 150.00\n");
+    printf("C - Produto 3: R$ 200.00\n");
+
+    printf("Digite o código do produto (A, B ou C): ");
+    scanf(" %c", &idProduto);
+
+    switch (idProduto) {
+        case 'A':
+            precoTotal = 100.00;
+            break;
+        case 'B':
+            precoTotal = 150.00;
+            break;
+        case 'C':
+            precoTotal = 200.00;
+            break;
+        default:
+            printf("Código inválido. Valor total será 0.00.\n");
+            precoTotal = 0.00;
+    }
+
+    printf("Digite a quantidade desejada: ");
+    scanf("%d", &quantidade);
+
+    precoTotal *= quantidade;
+
+    printf("=== Opções de Pagamento ===\n");
+    printf("1 - À vista\n");
+    printf("2 - Parcelado em 3x\n");
+    printf("3 - Parcelado em 6x\n");
+
+    int opcaoPagamento;
+    printf("Digite a opção de pagamento (1, 2 ou 3): ");
+    scanf("%d", &opcaoPagamento);
+
+    if (opcaoPagamento == 1) {
+        valorPagar = precoTotal;
+    } else if (opcaoPagamento == 2) {
+        valorPagar = precoTotal / 3.0;
+    } else if (opcaoPagamento == 3) {
+        valorPagar = precoTotal / 6.0;
+    } else {
+        printf("Opção de pagamento inválida. Valor a pagar será igual ao valor total.\n");
+        valorPagar = precoTotal;
+    }
+
+    printf("Valor total: R$ %.2f\n", precoTotal);
+    printf("Valor a pagar: R$ %.2f\n", valorPagar);
+
+    return 0;
+}

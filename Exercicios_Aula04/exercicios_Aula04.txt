@@ -1,0 +1,268 @@
+/**
+ * 1 – Fazer um programa que leia o valor das últimas 5 contas de luz, 
+ * água e telefone. Faça os cálculos e informe o valor total e o valor médio de cada conta 
+*/
+
+#include <stdio.h>
+
+int main() {
+    int i = 1;
+    float totalLuz = 0, totalAgua = 0, totalFone = 0;
+    float contaLuz, contaAgua, contaFone;
+    
+    while (i <= 5) {
+        printf("Informe o valor da conta de luz: ", i);
+        scanf("%f", &contaLuz);
+        
+        printf("Informe o valor da conta de agua: ", i);
+        scanf("%f", &contaAgua);
+        
+        printf("Informe o valor da conta de telefone: ", i);
+        scanf("%f", &contaFone);
+        
+        totalLuz += contaLuz;
+        totalAgua += contaAgua;
+        totalFone += contaFone;
+        
+        i++;
+    }
+    
+    float mediaLuz = totalLuz/5;
+    float mediaAgua = totalAgua/5;
+    float mediaFone = totalFone/5;
+    
+    printf("\nValor total de contas de luz: %.2f\n", totalLuz);
+    printf("Valor total de contas de agua: %.2f\n", totalAgua);
+    printf("Valor total de contas de telefone: %.2f\n", totalFone);
+    
+    printf("\nValor médio de contas de luz: %.2f\n", mediaLuz);
+    printf("Valor médio de contas de agua: %.2f\n", mediaAgua);
+    printf("Valor médio de contas de telefone: %.2f\n", mediaFone);
+    
+    return 0;
+}
+
+============================================================================================
+
+/**
+ * 2 – Fazer um programa que mostre somente os números de 3 em 3, 
+ * a partir do 3 até o 33.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int i = 3;
+
+    while (i <= 33) {
+        printf("%i\n", i);
+        i += 3;
+    }
+
+    return 0;
+}
+
+
+============================================================================================
+
+/**
+ * 3 – Leia o valor de 3 contas de luz, 
+ * some todas as contas e calcule um acréscimo de 15%,
+ * informe o valor total e o valor a pagar com acréscimo.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int i = 1;
+    float conta, total = 0, valorComAcrescimo;
+
+    while (i <= 3) {
+        printf("Digite o valor da conta: ", i);
+        scanf("%f", &conta);
+
+        total += conta; 
+        i++;     
+    }
+
+    valorComAcrescimo = total + (total * 0.15);
+
+    printf("Valor total das contas: R$ %.2f\n", total);
+    printf("Valor a pagar com acréscimo: R$ %.2f\n", valorComAcrescimo);
+
+    return 0;
+}
+
+
+============================================================================================
+
+/**
+ * 4 – Leia o preço de 8 produtos, faça o cálculo e informe o valor a pagar. 
+ * Acesse a forma de pagamento 1 – para a vista desconto de 10% ou 2 para a prazo acréscimo de 15%. 
+ * Em caso de opção invalidada, mostre uma mensagem e cancele a execução do programa.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int numProdutos = 8;
+    int i = 1;
+
+    while (i <= numProdutos) {
+        float precoProduto, valorPagar;
+        int formaPagamento;
+
+        printf("Informe o preco do produto: ", i);
+        scanf("%f", &precoProduto);
+
+        printf("Informe a forma de pagamento (1 para vista, 2 para prazo): ");
+        scanf("%i", &formaPagamento);
+
+        if (formaPagamento == 1) {
+            valorPagar = precoProduto * 0.9; // Desconto de 10% para pagamento à vista
+        } else if (formaPagamento == 2) {
+            valorPagar = precoProduto * 1.15; // Acréscimo de 15% para pagamento a prazo
+        } else {
+            printf("Opcao de forma de pagamento invalida. Programa cancelado.\n");
+            return 1; // Encerra o programa em caso de opção inválida
+        }
+
+        printf("Valor a pagar pelo produto: R$ %.2f\n", i, valorPagar);
+
+        i++;
+    }
+
+    return 0;
+}
+
+============================================================================================
+
+/**
+ * 5 – Fazer um programa que utilizando FOR leia e a acumule o preço de 5 produtos,
+ *  depois utilizando WHILE leia e acumule o preço de mais 5 produtos. Mostre o total do acumulador 1,
+ *  acumulador 2 e da soma dos acumuladores.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int i;
+    float preco, acumulador1 = 0, acumulador2 = 0;
+
+    // Usando o loop FOR para acumular o preço de 5 produtos
+    for (i = 1; i <= 5; i++) {
+        printf("Digite o preço do produto: ", i);
+        scanf("%f", &preco);
+        acumulador1 += preco;
+    }
+    i = 1;
+
+    while (i <= 5) {
+        printf("Digite o preco do produto: ", i);
+        scanf("%f", &preco);
+        acumulador2 += preco;
+        i++;
+    }
+
+    printf("Acumulador 1: %.2f\n", acumulador1);
+    printf("Acumulador 2: %.2f\n", acumulador2);
+    printf("Soma dos acumuladores: %.2f\n", acumulador1 + acumulador2);
+
+    return 0;
+}
+
+============================================================================================
+
+/**
+ * 6 – Uma carteira contém 8 cédulas de dólar. Leia o valor de cada cédula, 
+ * acumule e informe o total em dinheiro em dólar que contém essa carteira. 
+ * Leia a cotação do dólar do dia, faça o cálculo e informe o valor em dinheiro em real.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int num_cedulas = 8;
+    double cotacao_dolar, valor_cedula, total_dolar = 0.0, total_real;
+    int i = 1;
+
+    printf("Digite a cotacao do dolar do dia: ");
+    scanf("%lf", &cotacao_dolar);
+
+    while (i <= num_cedulas) {
+        printf("Digite o valor da cedula em dolar: ");
+        scanf("%lf", &valor_cedula);
+
+        total_dolar += valor_cedula;
+        i++;
+    }
+
+    total_real = total_dolar * cotacao_dolar;
+
+    printf("Total em dinheiro em dolar: %.2lf\n", total_dolar);
+    printf("Total em dinheiro em real: %.2lf\n", total_real);
+
+    return 0;
+}
+
+
+============================================================================================
+
+/**
+ * 7 – Leia o peso de 5 pessoas e informe o peso da pessoa mais pesada.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int i = 1;
+    float peso, pesoMaisPesado = 0;
+
+    while (i <= 5) {
+        printf("Digite o peso da pessoa: ", i);
+        scanf("%f", &peso);
+
+        if (peso > pesoMaisPesado) {
+            pesoMaisPesado = peso;
+        }
+
+        i++;
+    }
+
+    printf("O peso da pessoa mais pesada e: %.2f\n", pesoMaisPesado);
+
+    return 0;
+}
+
+
+============================================================================================
+/**
+* 8 – Leia a altura de 5 pessoas e informe a altura da pessoa mais baixa.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int i = 1;
+    float altura, alturaMaisBaixa;
+
+    printf("Digite a altura da pessoa: ", i);
+    scanf("%f", &altura);
+    alturaMaisBaixa = altura;
+
+    while (i < 5) {
+        i++;
+        printf("Digite a altura da pessoa: ", i);
+        scanf("%f", &altura);
+
+        if (altura < alturaMaisBaixa) {
+            alturaMaisBaixa = altura;
+        }
+    }
+
+    printf("A altura da pessoa mais baixa e: %.2f\n", alturaMaisBaixa);
+
+    return 0;
+}
+
+

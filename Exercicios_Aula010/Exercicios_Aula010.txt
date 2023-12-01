@@ -1,0 +1,226 @@
+/*
+1 – Escrever um programa para armazenar o nome e o número de 3 documentos de 5 pessoas – Matriz 5 x 3
+Mostrar todos os valores lidos
+Somente o nome dos documentos
+Mostrar somente o número dos documentos
+*/
+#include <stdio.h>
+
+int main() {
+    char documentos[5][3][50];
+	int x, y;
+    
+    for (x = 0; x < 5; x++) {
+        printf("Pessoa %i:\n", x + 1);
+        for (y = 0; y < 3; y++) {
+            printf("Nome do Documento %i: ", y + 1);
+            scanf("%s", documentos[x][y]);
+            printf("Numero do Documento %i: ", y + 1);
+            scanf("%s", documentos[x][y]);
+        }
+    }
+
+    // Mostrando todos os valores lidos
+    printf("Valores lidos:\n");
+    for (x = 0; x < 5; x++) {
+        for (y = 0; y < 3; y++) {
+            printf("Pessoa %i, Documento %i - Nome: %s, Numero: %s\n", x + 1, y + 1, documentos[x][y], documentos[x][y + 1]);
+        }
+    }
+
+    // Mostrando somente os nomes dos documentos
+    printf("Nomes dos documentos:\n");
+    for (x = 0; x < 5; x++) {
+        for (y = 0; y < 3; y++) {
+            printf("Pessoa %i, Documento %i - Nome: %s\n", x + 1, y + 1, documentos[x][y]);
+        }
+    }
+
+    // Mostrando somente os números dos documentos
+    printf("Numeros dos documentos:\n");
+    for (x = 0; x < 5; x++) {
+        for (y = 0; y < 3; y++) {
+            printf("Pessoa %i, Documento %i - Número: %s\n", x + 1, y + 1, documentos[x][y + 1]);
+        }
+    }
+
+    return 0;
+}
+
+
+
+==============================================================================================================================================
+
+/*
+2 – Escrever um programa que leia id, preço e quantidade de 3 produtos – Matriz 3 x 3
+Mostrar somente os preços
+Mostrar somente os produtos
+Mostrar preço x quantidade
+*/
+
+#include <stdio.h>
+
+int main() {
+    int matriz[3][3]; 
+	int i;
+	
+    printf("Digite o ID, preço e quantidade de 3 produtos:\n");
+
+    for (i = 0; i < 3; i++) {
+        printf("Produto %i:\n", i + 1);
+        printf("ID: ");
+        scanf("%i", &matriz[i][0]); 
+        printf("Preço: ");
+        scanf("%i", &matriz[i][1]);
+        printf("Quantidade: ");
+        scanf("%i", &matriz[i][2]);
+    }
+
+    printf("Precos dos produtos:\n");
+    for (i = 0; i < 3; i++) {
+        printf("Produto %i: R$ %i\n", i + 1, matriz[i][1]);
+    }
+
+    printf("IDs dos produtos:\n");
+    for (i = 0; i < 3; i++) {
+        printf("Produto %i: %i\n", i + 1, matriz[i][0]);
+    }
+
+    // Mostra o preco multiplicado pela quantidade de cada produto
+    printf("Preço x Quantidade dos produtos:\n");
+    for (i = 0; i < 3; i++) {
+        int preco = matriz[i][1];
+        int quantidade = matriz[i][2];
+        printf("Produto %i: R$ %i x %i = R$ %i\n", i + 1, preco, quantidade, preco * quantidade);
+    }
+
+    return 0;
+}
+
+==============================================================================================================================================
+
+
+/*
+3 – Escrever um programa que leia números inteiros em uma matriz 4 x 4
+Mostrar somente o menor valor de cada linha
+Mostrar somente o maior valor de cada linha
+*/
+
+/*
+3 – Escrever um programa que leia números inteiros em uma matriz 4 x 4
+Mostrar somente o menor valor de cada linha
+Mostrar somente o maior valor de cada linha
+*/
+#include <stdio.h>
+
+int main() {
+    int matriz[4][4];
+	int x, y;
+	
+    printf("Digite os valores da matriz 4x4:\n");
+    for (x = 0; x < 4; x++) {
+        for (y = 0; y < 4; y++) {
+            scanf("%i", &matriz[x][y]);
+        }
+    }
+
+    for (x = 0; x < 4; x++) {
+        int menor = matriz[x][0];
+        int maior = matriz[x][0];
+
+        for (y = 0; y < 4; y++) {
+            if (matriz[x][y] < menor) {
+                menor = matriz[x][y];
+            }
+            if (matriz[x][y] > maior) {
+                maior = matriz[x][y];
+            }
+        }
+
+        printf("Menor valor da linha %i: %i\n", x + 1, menor);
+        printf("Maior valor da linha %i: %i\n", x + 1, maior);
+    }
+
+    return 0;
+}
+
+==============================================================================================================================================
+
+
+/*
+4 – Escrever um programa que leia 16 números inteiros em um vetor
+Mostrar somente o menor valor
+Mostrar somente o maior valor
+*/
+
+#include <stdio.h>
+
+int main() {
+    int vetor[16]; 
+    int i; 
+    int menor, maior; 
+
+    printf("Digite 16 numeros inteiros:\n");
+
+    for (i = 0; i < 16; i++) {
+        scanf("%i", &vetor[i]);
+    }
+
+    // Inicializa as variaveis menor e maior com o primeiro elemento do vetor
+    menor = vetor[0];
+    maior = vetor[0];
+
+    // Encontra o menor e o maior valor percorrendo o vetor.
+    for (i = 1; i < 16; i++) {
+        if (vetor[i] < menor) {
+            menor = vetor[i]; 
+        }
+        if (vetor[i] > maior) {
+            maior = vetor[i];
+        }
+    }
+
+    printf("Menor valor: %i\n", menor);
+    printf("Maior valor: %i\n", maior);
+
+    return 0;
+}
+
+==============================================================================================================================================
+
+
+/*
+5 – Escreva um programa que leia 15 valores de produtos em um vetor
+Mostrar quantos produtos tem preço superior a 100
+Mostrar quantos produtos tem preço inferior a 100
+*/
+#include <stdio.h>
+
+int main() {
+    int quantidade = 15;
+    float precos[quantidade];
+    int acima_de_100 = 0; 
+    int abaixo_de_100 = 0;
+	int i;
+
+    printf("Digite os preços dos produtos:\n");
+    for (i = 0; i < quantidade; i++) {
+        printf("Produto: R$", i + 1);
+        scanf("%f", &precos[i]);
+    }
+
+ 
+    for (i = 0; i < quantidade; i++) {
+        if (precos[i] > 100) {
+            acima_de_100++;
+        } else {
+            abaixo_de_100++;
+        }
+    }
+
+    printf("Produtos com preço superior a 100: %i\n", acima_de_100);
+    printf("Produtos com preço inferior a 100: %i\n", abaixo_de_100);
+
+    return 0;
+}
+

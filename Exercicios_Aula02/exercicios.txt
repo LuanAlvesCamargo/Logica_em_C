@@ -1,0 +1,402 @@
+/**
+* 1- A empresa bits&bytes vende produtos nacionais e importados. Os produtos nacionais tem preço em
+* real e os produtos importados são comercializados por preço em dólar convertidos pela cotação do dia –
+* pesquisar na internet e colocar como constante no programa.
+* Fazer um programa que:
+* Leia e some o preço em real de 3 produtos nacionais(SUB1).
+* Mostrar o subtotal SUB1.
+* Leia e some o preço em dólar de 3 produtos importados, faça a conversão para real.(SUB2)
+* Mostrar o subtotal SUB2.
+
+* Mostrar um menu com o nome e o preço de 3 produtos nacionais.
+* Utilizando IF escolha e mostre o preço do produto escolhido SUB3.
+* Mostrar um menu com o nome e o preço de 3 produtos importados.
+* Utilizando SWITCH CASE escolha, faça a conversão para real e mostre o preço do produto convertido
+* em real SUB4.
+
+* Fazer a soma dos subtotais e mostrar o valor total.
+* Montar um menu de forma de pagamento conforme modelo abaixo:
+* 1 – Pagamento a vista – desconto de 12%
+* 2 – Pagamento a prazo – acréscimo de 15%
+* 3 – Parcela em 6x com acréscimo de 19%
+
+* Utilizando SWITCH CASE leia e verifique a opção escolhida, inclusive se a opção escolhida é válida e
+* em caso afirmativo fazer os cálculos necessários e informar o valor do pedido.
+* Montar um menu de forma de entrega conforme modelo abaixo:
+* 1 – Entrega Expressa – taxa de 11%
+* 2 – Entrega convencional – taxa de 5%
+* 3 – Retirar a compra na empresa – taxa 0%
+* Utilizando IF leia e verifique a opção escolhida, inclusive se a opção escolhida é válida e em caso
+* afirmativo fazer os cálculos necessários e informar o valor a pagar.
+* O programa DEVE ser desenvolvido seguindo TODAS as solicitações acima.
+*/
+
+#include <stdio.h>
+
+#define COTACAO_DOLAR 5.50
+
+int main() {
+    float preco_nacionais1;
+    float preco_nacionais2;
+    float preco_nacionais3;
+    float preco_importados1;
+    float preco_importados2;
+    float preco_importados3;
+    float subtotal_nacionais = 0;
+    float subtotal_importados = 0;
+
+    // Leitura e soma dos preços em reais de produtos nacionais
+    printf("Digite o preco do produto nacional 1 em reais: ");
+    scanf("%f", &preco_nacionais1);
+    printf("Digite o preco do produto nacional 2 em reais: ");
+    scanf("%f", &preco_nacionais2);
+    printf("Digite o preco do produto nacional 3 em reais: ");
+    scanf("%f", &preco_nacionais3);
+    subtotal_nacionais = preco_nacionais1 + preco_nacionais2 + preco_nacionais3;
+
+    printf("Subtotal produtos nacionais: R$%.2f\n", subtotal_nacionais);
+
+    // Leitura e soma dos preços em dólares de produtos importados
+    printf("Digite o preco do produto importado 1 em dolares: ");
+    scanf("%f", &preco_importados1);
+    printf("Digite o preco do produto importado 2 em dolares: ");
+    scanf("%f", &preco_importados2);
+    printf("Digite o preco do produto importado 3 em dolares: ");
+    scanf("%f", &preco_importados3);
+    subtotal_importados = (preco_importados1 + preco_importados2 + preco_importados3) * COTACAO_DOLAR;
+
+    printf("Subtotal produtos importados: R$%.2f\n", subtotal_importados);
+
+    // ... Código anterior ...
+
+    // Cálculo do valor total
+    float valor_total = subtotal_nacionais + subtotal_importados;
+
+    // Menu de forma de pagamento
+    printf("Formas de pagamento:\n");
+    printf("1 - Pagamento a vista - desconto de 12%%\n");
+    printf("2 - Pagamento a prazo - acréscimo de 15%%\n");
+    printf("3 - Parcela em 6x - acréscimo de 19%%\n");
+    int forma_pagamento;
+    printf("Escolha a forma de pagamento: ");
+    scanf("%i", &forma_pagamento);
+
+    switch (forma_pagamento) {
+        case 1:
+            valor_total *= 0.88;
+            break;
+        case 2:
+            valor_total *= 1.15;
+            break;
+        case 3:
+            valor_total *= 1.19;
+            break;
+        default:
+            printf("Opção inválida de pagamento. Programa cancelado.\n");
+            return 0;
+    }
+
+    // Menu de forma de entrega
+    printf("Formas de entrega:\n");
+    printf("1 - Entrega Expressa - taxa de 11%%\n");
+    printf("2 - Entrega convencional - taxa de 5%%\n");
+    printf("3 - Retirar a compra na empresa - taxa 0%%\n");
+    int forma_entrega;
+    printf("Escolha a forma de entrega: ");
+    scanf("%i", &forma_entrega);
+
+    switch (forma_entrega) {
+        case 1:
+            valor_total *= 1.11;
+            break;
+        case 2:
+            valor_total *= 1.05;
+            break;
+        case 3:
+            // Nenhuma taxa
+            break;
+        default:
+            printf("Opção inválida de entrega. Programa cancelado.\n");
+            return 0;
+    }
+
+    printf("Valor a pagar: R$%.2f\n", valor_total);
+
+    return 0;
+}
+
+   ============================================================================================================================================================================================
+
+/**
+* 2- Faça um programa que mostre o menu de opções de quarto de um Hotel
+* 1 – Quarto Standard - R$ 200,00 a diária
+* 2 – Quarto Luxo - R$ 400,00 a diária
+* 3 – Quarto Super Luxo - R$ 800,00 a diária
+* Escolha o quarto e informe em caso de opção inválida cancelando a execução do programa.
+* Leia a quantidade de diárias
+* Utilizando Switch CASE Teste a opção do quarto escolhido e faça o cálculo do valor total
+* Valor Total = Quantidade de Diárias x Valor da Diária
+* Mostre:
+* Quarto escolhido
+* Quantidade de diárias contratadas
+* Valor a Paga
+* Mostre um Menu de Pagamento
+* 1 - A vista desconto 15%
+* 2 - A prazo acréscimo 25%
+* 3 - 2x com acréscimo de 30%
+* Utilizando IF leia a forma de pagamento escolhida e calcule o valor a Pagar
+* Mostre o Valor a Pagar
+* Receba o pagamento
+* Verifique se o valor é suficiente
+* Se sim calcule e mostre o troco
+* Se não cancele o programa
+* O programa DEVE ser desenvolvido seguindo TODAS as solicitações acima.
+*/
+#include <stdio.h>
+
+int main() {
+    int opcao_quarto;
+    int quant_diarias;
+    float valor_diaria;
+    float valor_total;
+    float valor_pagar;
+    float desconto = 0.15;
+    float acrescimo = 0.25;
+
+    printf("Escolha o quarto:\n");
+    printf("1 - Quarto Standard - R$ 200,00 a diária\n");
+    printf("2 - Quarto Luxo - R$ 400,00 a diária\n");
+    printf("3 - Quarto Super Luxo - R$ 800,00 a diária\n");
+    scanf("%i", &opcao_quarto);
+
+    switch (opcao_quarto) {
+        case 1:
+            valor_diaria = 200.00;
+            break;
+        case 2:
+            valor_diaria = 400.00;
+            break;
+        case 3:
+            valor_diaria = 800.00;
+            break;
+        default:
+            printf("Opção inválida. Programa cancelado.\n");
+            return 0;
+    }
+
+    printf("Digite a quantidade de diárias: ");
+    scanf("%d", &quant_diarias);
+
+    valor_total = valor_diaria * quant_diarias;
+
+    printf("Quarto escolhido: %d\n", opcao_quarto);
+    printf("Quantidade de diárias contratadas: %d\n", quant_diarias);
+    printf("Valor a Pagar: R$%.2f\n", valor_total);
+
+    int opcao_pagamento;
+    printf("Escolha a forma de pagamento:\n");
+    printf("1 - A vista desconto 15%%\n");
+    printf("2 - A prazo acréscimo 25%%\n");
+    printf("3 - 2x com acréscimo de 30%%\n");
+    scanf("%d", &opcao_pagamento);
+
+    switch (opcao_pagamento) {
+        case 1:
+            valor_pagar = valor_total - (valor_total * desconto);
+            break;
+        case 2:
+            valor_pagar = valor_total + (valor_total * acrescimo);
+            break;
+        case 3:
+            valor_pagar = valor_total * 1.3;
+            break;
+        default:
+            printf("Opção inválida de pagamento. Programa cancelado.\n");
+            return 0;
+    }
+
+    printf("Valor a Pagar: R$%.2f\n", valor_pagar);
+
+    float valor_recebido;
+    printf("Digite o valor recebido: ");
+    scanf("%f", &valor_recebido);
+
+    if (valor_recebido >= valor_pagar) {
+        float troco = valor_recebido - valor_pagar;
+        printf("Troco: R$%.2f\n", troco);
+    } else {
+        printf("Valor insuficiente. Programa cancelado.\n");
+    }
+
+    return 0;
+}
+
+
+ 
+
+ 
+
+============================================================================================================================================================================================
+
+/**
+* 3 - Fazer um programa que mostre um menu de uma Pizzaria:
+* 1 – Calabresa 48,00
+* 2 – Quatro queijos 52,00
+* 3 – Frango com catupiry 68,00
+* Acesse e utilizando IF verifique a opção desejada
+* Em caso de opção inválida cancele a execução do programa
+* Acesse a quantidade
+* Faça o cálculo e informe:
+* O Sabor escolhido
+* A quantidade comprada
+* Valor Total
+* Mostre um menu com a opções
+* 1 – Pagamento à vista desconto de 10%
+* 2 – Pagamento débito SEM desconto
+* 3 – Pagamento crédito COM acréscimo de 15%
+* Acesse e utilizando Switch CASE verifique a opção deseja
+* Em caso de opção inválida cancele a execução do programa
+* Faça o cálculo e informe o valor a pagar
+* Acesse o valor do pagamento
+* Se o valor pago for maior que o valor a pagar
+* Calcule e mostre o troco
+* Caso contrário mostra mensagem
+* Valor pago insuficiente
+* O programa DEVE ser desenvolvido seguindo TODAS as solicitações acima.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int opcao_sabor;
+    int quantidade;
+    float valor_total;
+    float valor_pagar;
+    float desconto = 0.10;
+    float acrescimo = 0.15;
+
+    printf("Escolha o sabor:\n");
+    printf("1 - Calabresa - R$ 48,00\n");
+    printf("2 - Quatro queijos - R$ 52,00\n");
+    printf("3 - Frango com catupiry - R$ 68,00\n");
+    scanf("%i", &opcao_sabor);
+
+    float valor_sabor;
+    switch (opcao_sabor) {
+        case 1:
+            valor_sabor = 48.00;
+            break;
+        case 2:
+            valor_sabor = 52.00;
+            break;
+        case 3:
+            valor_sabor = 68.00;
+            break;
+        default:
+            printf("Opção inválida. Programa cancelado.\n");
+            return 0;
+    }
+
+    printf("Digite a quantidade: ");
+    scanf("%i", &quantidade);
+
+    valor_total = valor_sabor * quantidade;
+
+    printf("Sabor escolhido: %d\n", opcao_sabor);
+    printf("Quantidade comprada: %d\n", quantidade);
+    printf("Valor Total: R$%.2f\n", valor_total);
+
+    int opcao_pagamento;
+    printf("Escolha a forma de pagamento:\n");
+    printf("1 - Pagamento à vista desconto de 10%%\n");
+    printf("2 - Pagamento débito SEM desconto\n");
+    printf("3 - Pagamento crédito COM acréscimo de 15%%\n");
+    scanf("%i", &opcao_pagamento);
+
+    switch (opcao_pagamento) {
+        case 1:
+            valor_pagar = valor_total - (valor_total * desconto);
+            break;
+        case 2:
+            valor_pagar = valor_total;
+            break;
+        case 3:
+            valor_pagar = valor_total + (valor_total * acrescimo);
+            break;
+        default:
+            printf("Opção inválida de pagamento. Programa cancelado.\n");
+            return 0;
+    }
+
+    printf("Valor a Pagar: R$%.2f\n", valor_pagar);
+
+    float valor_recebido;
+    printf("Digite o valor recebido: ");
+    scanf("%f", &valor_recebido);
+
+    if (valor_recebido >= valor_pagar) {
+        float troco = valor_recebido - valor_pagar;
+        printf("Troco: R$%.2f\n", troco);
+    } else {
+        printf("Valor pago insuficiente. Programa cancelado.\n");
+    }
+
+    return 0;
+}
+
+
+============================================================================================================================================================================================
+
+/**
+* 4 – Fazer um programa que leia o salário de um funcionário
+* Mostre um menu com cargos
+* 1 – Analista de sistemas
+* 2 – Programador
+* 3 – Operador de sistemas
+* Acesse o cargo
+* Se cargo invalido e sim cancele a execução do programa
+* Verifique e calcule:
+* Cargo 1 calcule aumento de 10% + 100,00
+* Cargo 2 calcule aumento de 15% + 200,00
+* Cargo 3 calcule aumento de 25% + 50,00
+* Mostre o salário, o cargo e o novo salário do funcionário
+* O programa DEVE ser desenvolvido seguindo TODAS as solicitações acima.
+*/
+
+#include <stdio.h>
+
+int main() {
+    float salario;
+    int cargo;
+    float novo_salario;
+
+    printf("Digite o salário do funcionário: ");
+    scanf("%f", &salario);
+
+    printf("Escolha o cargo:\n");
+    printf("1 - Analista de sistemas\n");
+    printf("2 - Programador\n");
+    printf("3 - Operador de sistemas\n");
+    scanf("%i", &cargo);
+
+    switch (cargo) {
+        case 1:
+            novo_salario = salario * 1.10 + 100.00;
+            break;
+        case 2:
+            novo_salario = salario * 1.15 + 200.00;
+            break;
+        case 3:
+            novo_salario = salario * 1.25 + 50.00;
+            break;
+        default:
+            printf("Cargo inválido. Programa cancelado.\n");
+            return 0;
+    }
+
+    printf("Salário anterior: R$%.2f\n", salario);
+    printf("Cargo: %d\n", cargo);
+    printf("Novo salário: R$%.2f\n", novo_salario);
+
+    return 0;
+}

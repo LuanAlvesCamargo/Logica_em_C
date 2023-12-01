@@ -1,0 +1,273 @@
+/**
+* 8 - Fazer um programa que leia 10 números e informe qual é o maior número.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int numero, maior;
+	int i;
+	
+    printf("Digite o numero 1: ");
+    scanf("%i", &maior);
+
+    for (i = 2; i <= 10; i++) {
+        printf("Digite o numero %i: ", i);
+        scanf("%i", &numero);
+
+        if (numero > maior) {
+            maior = numero;
+        }
+    }
+
+    printf("O maior numero digitado e: %i\n", maior);
+
+    return 0;
+}
+
+=================================================================================================================================
+
+/**
+* 2 – Leia e acumule o preço de 8 produtos e informe o valor a pagar. Acesse a forma de pagamento 1 para
+* pagamento parcelado em 5x com 15% de juros ou 2 para pagamento parcelado em 12x com 22% de juros,
+* mostre o valor da parcela a ser paga. Em caso de opção de pagamento errada mostre apenas o valor total e a
+* mensagem forma de pagamento errada.
+*/
+#include <stdio.h>
+
+int main() {
+    float precoProduto, totalPagar = 0.0;
+    int formaPagamento, i;
+
+    for (i = 1; i <= 8; i++) {
+        printf("Digite o preço do produto: ", i);
+        scanf("%f", &precoProduto);
+        totalPagar += precoProduto;
+    }
+
+    printf("Digite a forma de pagamento (1 para 5x ou 2 para 12x): ");
+    scanf("%i", &formaPagamento);
+
+    float valorParcela;
+    if (formaPagamento == 1) {
+        valorParcela = (totalPagar * 1.15) / 5;
+    } else if (formaPagamento == 2) {
+        valorParcela = (totalPagar * 1.22) / 12;
+    } else {
+        printf("Forma de pagamento errada.\n");
+        valorParcela = 0; 
+    }
+
+    if (valorParcela > 0) {
+        printf("Valor total a pagar: R$%.2f\n", totalPagar);
+        printf("Valor da parcela a pagar: R$%.2f\n", valorParcela);
+    } else {
+        printf("Valor total a pagar: R$%.2f\n", totalPagar);
+    }
+
+    return 0;
+}
+
+=================================================================================================================================
+
+/**
+* 3 – Em uma sala de 15 alunos. Leia a série digite 1 para 1CC, 2 para 2CC, 3 para 3CC e 4 para 4CC. Informe o
+* total de alunos de cada curso e o total de respostas erradas.
+*/
+
+#include <stdio.h>
+
+
+int main() {
+    int totalAlunos = 15;
+    int curso, resposta, totalRespostasErradas = 0;
+    int total1CC = 0, total2CC = 0, total3CC = 0, total4CC = 0;
+    int i;
+
+    for (i = 0; i < totalAlunos; i++) {
+        printf("Aluno %i:\n", i + 1);
+        
+        printf("Digite a serie (1 para 1CC, 2 para 2CC, 3 para 3CC, 4 para 4CC): ");
+        scanf("%i", &curso);
+
+        if (curso >= 1 && curso <= 4) {
+            switch (curso) {
+                case 1:
+                    total1CC++;
+                    break;
+                case 2:
+                    total2CC++;
+                    break;
+                case 3:
+                    total3CC++;
+                    break;
+                case 4:
+                    total4CC++;
+                    break;
+            }
+        } else {
+            printf("Serie invalida!\n");
+            totalRespostasErradas++;
+        }
+        
+        printf("\n");
+    }
+
+    printf("Total de alunos em 1CC: %i\n", total1CC);
+    printf("Total de alunos em 2CC: %i\n", total2CC);
+    printf("Total de alunos em 3CC: %i\n", total3CC);
+    printf("Total de alunos em 4CC: %i\n", total4CC);
+    printf("Total de respostas erradas: %i\n", totalRespostasErradas);
+
+    return 0;
+}
+
+=================================================================================================================================
+
+/**
+* 4 – Uma carteira contem 8 cédulas. Leia o valor de cada cédula e informe o total em dinheiro que contém essa carteira.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int totalCedulas = 8;
+    float valorCedula, totalDinheiro = 0.0;
+    int i;
+
+    for (i = 1; i <= totalCedulas; i++) {
+        printf("Digite o valor da cedula %i: ", i);
+        scanf("%f", &valorCedula);
+        totalDinheiro += valorCedula;
+    }
+
+    printf("O total em dinheiro na carteira e: R$%.2f\n", totalDinheiro);
+
+    return 0;
+}
+
+=================================================================================================================================
+
+/**
+* 5 - Fazer um programa que imprima(printf) números pares de 0 a 20.
+*/
+
+#include <stdio.h>
+
+int main() {
+	int i;
+    printf("Números pares de 0 a 20:\n");
+    
+    for(i = 0; i <= 20; i += 2) {
+        printf("%i\n", i);
+    }
+
+    return 0;
+}
+
+=================================================================================================================================
+
+/**
+* 6 - Fazer um programa que imprima(printf) números ímpares de 1 a 21.
+*/
+
+#include <stdio.h>
+
+int main() {
+	int i;
+	
+    printf("Numeros impares de 1 a 21:\n");
+    
+    for(i = 1; i <= 21; i += 2) {
+        printf("%i\n", i);
+    }
+
+    return 0;
+}
+
+=================================================================================================================================
+
+/**
+* 7 - Fazer um programa que leia 10 números e conte quantos deles estão no intervalo [10,20] e quantos deles
+* estão fora do intervalo, mostrar o total de cada contador.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int numero, dentroIntervalo = 0, foraIntervalo = 0;
+	int i;
+	
+    for (i = 0; i < 10; i++) {
+        printf("Digite o numero %i: ", i + 1);
+        scanf("%i", &numero);
+
+        if (numero >= 10 && numero <= 20) {
+            dentroIntervalo++;
+        } else {
+            foraIntervalo++;
+        }
+    }
+
+    printf("Total de numeros dentro do intervalo [10,20]: %i\n", dentroIntervalo);
+    printf("Total de numeros fora do intervalo [10,20]: %i\n", foraIntervalo);
+
+    return 0;
+}
+
+=================================================================================================================================
+
+/**
+* 8 - Fazer um programa que leia 10 números e informe qual é o maior número.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int numero, maior;
+	int i;
+	
+    printf("Digite o numero 1: ");
+    scanf("%i", &maior);
+
+    for (i = 2; i <= 10; i++) {
+        printf("Digite o numero %i: ", i);
+        scanf("%i", &numero);
+
+        if (numero > maior) {
+            maior = numero;
+        }
+    }
+
+    printf("O maior numero digitado e: %i\n", maior);
+
+    return 0;
+}
+
+=================================================================================================================================
+/**
+9 - Fazer um programa que leia 10 números e informe qual é o menor número.
+*/
+
+#include <stdio.h>
+
+int main() {
+    int numero, menor;
+    int i;
+
+    printf("Digite o numero 1: ");
+    scanf("%i", &menor);
+
+    for (i = 2; i <= 10; i++) {
+        printf("Digite o numero %i: ", i);
+        scanf("%i", &numero);
+
+        if (numero < menor) {
+            menor = numero;
+        }
+    }
+
+    printf("O menor numero digitado e: %i\n", menor);
+
+    return 0;
+}
